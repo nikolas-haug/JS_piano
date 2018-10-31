@@ -1,0 +1,25 @@
+#keyboard {
+    font-size: 0;
+}
+
+.key-container {
+    position: relative;
+    display: inline-block;
+}
+
+.white-key {
+    margin: 0;
+    border: 1px solid black;
+    height: 200px;
+    width: 70px;
+    display: inline-block;
+}
+
+.black-key {
+    display: inline-block;
+    position: absolute;
+    left: 62px;
+    height: 100px;
+    width: 24px;
+    background-color: black;
+}

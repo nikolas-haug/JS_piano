@@ -12,67 +12,75 @@
 
     <h1>JS Piano</h1>
 
-    <!-- <div id="kbd">
-
-            <div id="keys">
-    
-                <div id="a" class="note white">A</div>
-                <div id="w" class="note black">W</div>
-                <div id="s" class="note white">S</div>
-                <div id="e" class="note black">E</div>
-                <div id="d" class="note white">D</div>
-                <div id="f" class="note white">F</div>
-                <div id="t" class="note black">T</div>
-                <div id="g" class="note white">G</div>
-                <div id="y" class="note black">Y</div>
-                <div id="h" class="note white">H</div>
-                <div id="u" class="note black">U</div>
-                <div id="j" class="note white">J</div>
-                <div id="k" class="note white">K</div>
-                <div id="o" class="note black">O</div>
-                <div id="l" class="note white">L</div>
-                <div id="p" class="note black">P</div>
-                <div id="semiColon" class="note white">;</div>
-                <div id="apostrophe" class="note white">'</div>
-    
-            </div>
-        </div> -->
-        
         <div id="keyboard">
 
-            <div class="key-container">
-                <div class="white-key">C</div>
+            <div data-key="65" class="key-container">
+                <div class="white-key"></div>
                     <div class="black-key"></div>
             </div>
             <div class="key-container">
-                <div class="white-key">D</div>
-                    <div class="black-key"></div>
-            </div>
-
-            <div class="key-container">
-                <div class="white-key">C</div>
-            </div>
-
-            <div class="key-container">
-                <div class="white-key">C</div>
-                    <div class="black-key"></div>
-            </div>
-            <div class="key-container">
-                <div class="white-key">D</div>
-                    <div class="black-key"></div>
-            </div>
-            <div class="key-container">
-                <div class="white-key">D</div>
+                <div class="white-key"></div>
                     <div class="black-key"></div>
             </div>
 
             <div class="key-container">
-                <div class="white-key">C</div>
+                <div class="white-key"></div>
             </div>
+
+            <div class="key-container">
+                <div class="white-key"></div>
+                    <div class="black-key"></div>
+            </div>
+            <div class="key-container">
+                <div class="white-key"></div>
+                    <div class="black-key"></div>
+            </div>
+            <div class="key-container">
+                <div class="white-key"></div>
+                    <div class="black-key"></div>
+            </div>
+
+            <div class="key-container">
+                <div class="white-key"></div>
+            </div>
+
+            <div class="key-container">
+                <div class="white-key"></div>
+                    <div class="black-key"></div>
+            </div>
+            <div class="key-container">
+                <div class="white-key"></div>
+                    <div class="black-key"></div>
+            </div>
+
+            <div class="key-container">
+                <div class="white-key"></div>
+            </div>
+
+        </div>
+
+        <audio data-key="65" src="audio/piano_note_C.m4a"></audio>
+
+        <script>
+        
+        function playSound(e) {
+            // console.log(e.keyCode);
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            // const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if(!audio) return // stop the function from running altogether
+            audio.currentTime = 0; // rewind to the start
+            audio.play();
+            // key.classList.add('playing');
 
             
 
-        </div>
+        }
+        
+        window.addEventListener('keydown', playSound);
+        
+        
+        
+        </script>
     
 </body>
 </html>

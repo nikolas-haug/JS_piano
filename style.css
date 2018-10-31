@@ -19,7 +19,14 @@
     display: inline-block;
     position: absolute;
     left: 40px;
-    height: 100px;
+    height: 120px;
     width: 24px;
     background-color: black;
+}
+
+.played {
+    z-index: -1;
+    position: relative;
+    background-color: green;
+    transition: all 1.5s;
 }

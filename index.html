@@ -14,12 +14,12 @@
 
         <div id="keyboard">
 
-            <div data-key="65" class="key-container">
-                <div class="white-key"></div>
+            <div class="key-container">
+                <div data-key="65" class="white-key"></div>
                     <div class="black-key"></div>
             </div>
             <div class="key-container">
-                <div class="white-key"></div>
+                <div data-key="83" class="white-key"></div>
                     <div class="black-key"></div>
             </div>
 
@@ -60,23 +60,25 @@
         </div>
 
         <audio data-key="65" src="audio/piano_note_C.m4a"></audio>
+        <audio data-key="83" src="audio/piano_note_D.m4a"></audio>
+        <audio data-key="68" src="audio/piano_note_E.m4a"></audio>
+        <audio data-key="70" src="audio/piano_note_F.m4a"></audio>
 
         <script>
-        
-        function playSound(e) {
-            // console.log(e.keyCode);
-            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-            // const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            if(!audio) return // stop the function from running altogether
-            audio.currentTime = 0; // rewind to the start
-            audio.play();
-            // key.classList.add('playing');
 
             
-
-        }
         
-        window.addEventListener('keydown', playSound);
+            function playSound(e) {
+                console.log(e.keyCode);
+                const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+                const key = document.querySelector(`.white-key[data-key="${e.keyCode}"]`);
+                if(!audio) return // stop the function from running altogether
+                audio.currentTime = 0; // rewind to the start
+                audio.play();
+                key.classList.add('played');
+            }
+            
+            window.addEventListener('keydown', playSound);
         
         
         

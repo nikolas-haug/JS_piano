@@ -28,5 +28,6 @@
     z-index: -1;
     position: relative;
     background-color: green;
-    transition: all 1.5s;
+    box-shadow: 5px 10px;
+    transition: all 0.3s;
 }

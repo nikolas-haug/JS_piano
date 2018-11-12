@@ -86,6 +86,17 @@
 
         <script>
 
+            // function to generate random colors for the pressed keys
+            function randomColor() {
+                //pick a "red" from 0 - 255
+                var r = Math.floor(Math.random() * 256);
+                //pick a "green" from 0 - 255
+                var g = Math.floor(Math.random() * 256);
+                //pick a "blue" from 0 - 255
+                var b = Math.floor(Math.random() * 256);
+                return "rgb(" + r + ", " + g + ", " + b + ")";
+            }
+
             function playSound(e) {
                 console.log(e.keyCode);
                 const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
@@ -96,6 +107,8 @@
                 audio.play();
                 if(whiteKey) {
                     whiteKey.classList.add('played-white');
+                    whiteKey.style.background = randomColor();
+                    // document.querySelector('body').style.background = randomColor();
                 } else {
                     console.log('black key!');
                     blackKey.classList.add('played-black');
@@ -115,6 +128,7 @@
                 if(this.classList[0] === 'white-key') {
                     console.log('white key played!');
                     this.classList.remove('played-white');
+                    this.style.background = "";
                 } else {
                     this.classList.remove('played-black');
                 }

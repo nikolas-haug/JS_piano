@@ -27,15 +27,15 @@
 .played-white {
     z-index: -1;
     position: relative;
-    background-color: green;
+    /* background-color: green; */
     box-shadow: 5px 10px;
     transition: all 0.3s;
 }
 
 .played-black {
-    /* z-index: -1; */
+    z-index: 1;
     /* position: relative; */
-    background-color: purple;
+    background-color: #FA5B3D;    ;
     box-shadow: 5px 10px;
     transition: all 0.3s;
 }

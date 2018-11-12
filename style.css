@@ -24,10 +24,18 @@
     background-color: black;
 }
 
-.played {
+.played-white {
     z-index: -1;
     position: relative;
     background-color: green;
+    box-shadow: 5px 10px;
+    transition: all 0.3s;
+}
+
+.played-black {
+    /* z-index: -1; */
+    /* position: relative; */
+    background-color: purple;
     box-shadow: 5px 10px;
     transition: all 0.3s;
 }

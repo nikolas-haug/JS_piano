@@ -15,46 +15,46 @@
         <div id="keyboard">
 
             <div class="key-container">
-                <div data-key="65" class="white-key"></div>
-                    <div data-key="87" class="black-key"></div>
+                <div data-key="65" class="white-key key"></div>
+                    <div data-key="87" class="black-key key"></div>
             </div>
             <div class="key-container">
-                <div data-key="83" class="white-key"></div>
-                    <div data-key="69" class="black-key"></div>
-            </div>
-
-            <div class="key-container">
-                <div data-key="68" class="white-key"></div>
+                <div data-key="83" class="white-key key"></div>
+                    <div data-key="69" class="black-key key"></div>
             </div>
 
             <div class="key-container">
-                <div data-key="70" class="white-key"></div>
-                    <div data-key="84" class="black-key"></div>
-            </div>
-            <div class="key-container">
-                <div data-key="71" class="white-key"></div>
-                    <div data-key="89" class="black-key"></div>
-            </div>
-            <div class="key-container">
-                <div data-key="72" class="white-key"></div>
-                    <div data-key="85" class="black-key"></div>
+                <div data-key="68" class="white-key key"></div>
             </div>
 
             <div class="key-container">
-                <div data-key="74" class="white-key"></div>
+                <div data-key="70" class="white-key key"></div>
+                    <div data-key="84" class="black-key key"></div>
+            </div>
+            <div class="key-container">
+                <div data-key="71" class="white-key key"></div>
+                    <div data-key="89" class="black-key key"></div>
+            </div>
+            <div class="key-container">
+                <div data-key="72" class="white-key key"></div>
+                    <div data-key="85" class="black-key key"></div>
             </div>
 
             <div class="key-container">
-                <div data-key="75"class="white-key"></div>
-                    <div data-key="79" class="black-key"></div>
-            </div>
-            <div class="key-container">
-                <div data-key="76" class="white-key"></div>
-                    <div data-key="80" class="black-key"></div>
+                <div data-key="74" class="white-key key"></div>
             </div>
 
             <div class="key-container">
-                <div data-key="186" class="white-key"></div>
+                <div data-key="75"class="white-key key"></div>
+                    <div data-key="79" class="black-key key"></div>
+            </div>
+            <div class="key-container">
+                <div data-key="76" class="white-key key"></div>
+                    <div data-key="80" class="black-key key"></div>
+            </div>
+
+            <div class="key-container">
+                <div data-key="186" class="white-key key"></div>
             </div>
 
         </div>
@@ -89,24 +89,42 @@
             function playSound(e) {
                 console.log(e.keyCode);
                 const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-                const key = document.querySelector(`.white-key[data-key="${e.keyCode}"]`);
+                const whiteKey = document.querySelector(`.white-key[data-key="${e.keyCode}"]`);
+                const blackKey = document.querySelector(`.black-key[data-key="${e.keyCode}"]`);
                 if(!audio) return // stop the function from running altogether
                 audio.currentTime = 0; // rewind to the start
                 audio.play();
-                key.classList.add('played');
+                if(whiteKey) {
+                    whiteKey.classList.add('played-white');
+                } else {
+                    console.log('black key!');
+                    blackKey.classList.add('played-black');
+                }
+                // key.classList.add('played');
             }
 
-            whiteKeys = document.querySelectorAll('.white-key');
+            // make variable for all piano keys
+            const allKeys = document.querySelectorAll('.key')
+            const whiteKeys = document.querySelectorAll('.white-key');
 
             function removeTransition(e) {
                 // console.log(e);
                 if(e.propertyName !== 'background-color') return // skip it if it's not a background-color change
-                this.classList.remove('played');
+                console.log(this);
+                console.log(this.classList[0]);
+                if(this.classList[0] === 'white-key') {
+                    console.log('white key played!');
+                    this.classList.remove('played-white');
+                } else {
+                    this.classList.remove('played-black');
+                }
+                // this.classList.remove('played-black');
             }
             
             window.addEventListener('keydown', playSound);
 
-            whiteKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
+            allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
+            // whiteKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
         </script>
     

@@ -108,12 +108,10 @@
                 if(whiteKey) {
                     whiteKey.classList.add('played-white');
                     whiteKey.style.background = randomColor();
-                    // document.querySelector('body').style.background = randomColor();
                 } else {
                     console.log('black key!');
                     blackKey.classList.add('played-black');
                 }
-                // key.classList.add('played');
             }
 
             // make variable for all piano keys
@@ -132,13 +130,11 @@
                 } else {
                     this.classList.remove('played-black');
                 }
-                // this.classList.remove('played-black');
             }
             
             window.addEventListener('keydown', playSound);
 
             allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
-            // whiteKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
         </script>
     

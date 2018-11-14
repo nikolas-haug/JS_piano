@@ -98,18 +98,20 @@
             }
 
             function playSound(e) {
-                console.log(e.keyCode);
+                // console.log(e.keyCode);
+                // create variables for data attributes in DOM
                 const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
                 const whiteKey = document.querySelector(`.white-key[data-key="${e.keyCode}"]`);
                 const blackKey = document.querySelector(`.black-key[data-key="${e.keyCode}"]`);
                 if(!audio) return // stop the function from running altogether
                 audio.currentTime = 0; // rewind to the start
                 audio.play();
+                // check which type of key is played before adding class
                 if(whiteKey) {
                     whiteKey.classList.add('played-white');
                     whiteKey.style.background = randomColor();
                 } else {
-                    console.log('black key!');
+                    // console.log('black key!');
                     blackKey.classList.add('played-black');
                 }
             }
@@ -120,9 +122,10 @@
 
             function removeTransition(e) {
                 // console.log(e);
-                if(e.propertyName !== 'background-color') return // skip it if it's not a background-color change
-                console.log(this);
-                console.log(this.classList[0]);
+                if(e.propertyName !== 'background-color') return // skip it if it's not a background-color 
+                // console.log(this);
+                // console.log(this.classList[0]);
+                // check the type of key before removing the class
                 if(this.classList[0] === 'white-key') {
                     console.log('white key played!');
                     this.classList.remove('played-white');

@@ -11,6 +11,7 @@
 <body>
 
     <h1>JS Piano</h1>
+    <button id="player-piano">Player Piano</button>
 
         <div id="keyboard">
 
@@ -86,6 +87,12 @@
 
         <script>
 
+            // function for looping through a text array of notes for player piano version
+            function playerPiano(notes) {
+                // loop through the array 'notes' and call the play sound function for each note
+                notes.map(note => playPlayerSound(note));
+            }
+
             // function to generate random colors for the pressed keys
             function randomColor() {
                 //pick a "red" from 0 - 255
@@ -95,6 +102,26 @@
                 //pick a "blue" from 0 - 255
                 var b = Math.floor(Math.random() * 256);
                 return "rgb(" + r + ", " + g + ", " + b + ")";
+            }
+
+            // TEST FUNCTION
+            function playPlayerSound(note) {
+                // console.log(e.keyCode);
+                // create variables for data attributes in DOM
+                const audio = document.querySelector(`audio[data-key="${note}"]`);
+                const whiteKey = document.querySelector(`.white-key[data-key="${note}"]`);
+                const blackKey = document.querySelector(`.black-key[data-key="${note}"]`);
+                if(!audio) return // stop the function from running altogether
+                audio.currentTime = 0; // rewind to the start
+                audio.play();
+                // check which type of key is played before adding class
+                if(whiteKey) {
+                    whiteKey.classList.add('played-white');
+                    whiteKey.style.background = randomColor();
+                } else {
+                    // console.log('black key!');
+                    blackKey.classList.add('played-black');
+                }
             }
 
             function playSound(e) {
@@ -136,9 +163,16 @@
             }
             
             // add event listeners to DOM
-            window.addEventListener('keydown', playSound);
+            // window.addEventListener('keydown', playSound);
 
             allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+            document.querySelector('#player-piano').addEventListener('click', function() {
+                playerPiano([65, 87]);
+            });
+            
+
+
 
         </script>
     

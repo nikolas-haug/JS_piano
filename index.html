@@ -87,11 +87,12 @@
 
         <script>
 
-            // function for looping through a text array of notes for player piano version
-            function playerPiano(notes) {
-                // loop through the array 'notes' and call the play sound function for each note
-                notes.map(note => playPlayerSound(note));
-            }
+            // make variable for all piano keys
+            const allKeys = document.querySelectorAll('.key')
+            const whiteKeys = document.querySelectorAll('.white-key');
+
+            // make a variable for the player piano array argument
+            let notesArr = [65, 68, 71, 75, 71, 68, 65];
 
             // function to generate random colors for the pressed keys
             function randomColor() {
@@ -104,7 +105,7 @@
                 return "rgb(" + r + ", " + g + ", " + b + ")";
             }
 
-            // TEST FUNCTION
+            // function to play player piano
             function playPlayerSound(note) {
                 // console.log(e.keyCode);
                 // create variables for data attributes in DOM
@@ -124,6 +125,7 @@
                 }
             }
 
+            // function to play piano with keyboard
             function playSound(e) {
                 // console.log(e.keyCode);
                 // create variables for data attributes in DOM
@@ -143,10 +145,49 @@
                 }
             }
 
-            // make variable for all piano keys
-            const allKeys = document.querySelectorAll('.key')
-            const whiteKeys = document.querySelectorAll('.white-key');
+            // TEST RECURSIVE FUNCTION
+            function loopThroughSplitText(text) {
+                var i = 0;
+                function printEntry() {
+                    console.log(text[i]);
+                    i++; // Increment the position
+                    if (i < text.length) { // If there are more chars, schedule another
+                        setTimeout(printEntry, 1000);
+                    }
+                }
+                printEntry(); // Print the first entry/char
+            }
 
+            // TEST recursive function to play each note separately on player piano
+            // function playEachNote(notes) {
+            //     let i = 0;
+            //     function callNotesAgain() {
+            //         // increment the position
+            //         i++;
+            //         if(i < notes.length) {
+            //             setTimeout(playPlayerSound(notes[i]), 1000);
+            //         }
+            //     }
+            //     callNotesAgain(); // call the notes function again till all have been played
+            // }
+
+            // function for player piano timed out array loop
+            function loopThroughKeysArray(splitArr) {
+                for (let i = 0; i < splitArr.length; i++) {
+                    // for each iteration play a single note
+                    // and make a pause after it
+                    (function (i) {
+                        setTimeout( () => {
+                            // call the player piano function for each element in array
+                            playPlayerSound(splitArr[i]);
+                            console.log(splitArr[i]);
+                        }, 250 * i);
+                    })(i);
+                    // console.log(i);
+                };
+            }
+
+            // function to remove the css class after transition
             function removeTransition(e) {
                 // console.log(e);
                 if(e.propertyName !== 'background-color') return // skip it if it's not a background-color 
@@ -164,26 +205,15 @@
             
             // add event listeners to DOM
             window.addEventListener('keydown', playSound);
-
             allKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
-
+            
+            // event listener for player piano button
             document.querySelector('#player-piano').addEventListener('click', function() {
-                loopThroughKeysArray([65, 87, 83, 68, 65])
+                loopThroughKeysArray(notesArr);
+                // playEachNote(notesArr);
             });
 
-            function loopThroughKeysArray(splitArr) {
-                for (var i = 0; i < splitArr.length; i++) {
-                    // for each iteration play a single note
-                    // and make a pause after it
-                    (function (i) {
-                        setTimeout(function () {
-                            // call the player piano function for each element in array
-                            playPlayerSound(splitArr[i]);
-                            console.log(splitArr[i]);
-                        }, 500 * i);
-                    })(i);
-                };
-            }
+            // loopThroughSplitText(['Hello', 'how', 'are', 'you', '?']);
             
         </script>
     

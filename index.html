@@ -146,17 +146,17 @@
             }
 
             // TEST RECURSIVE FUNCTION
-            function loopThroughSplitText(text) {
-                var i = 0;
-                function printEntry() {
-                    console.log(text[i]);
-                    i++; // Increment the position
-                    if (i < text.length) { // If there are more chars, schedule another
-                        setTimeout(printEntry, 1000);
-                    }
-                }
-                printEntry(); // Print the first entry/char
-            }
+            // function loopThroughSplitText(text) {
+            //     let i = 0;
+            //     function printEntry() {
+            //         console.log(text[i]);
+            //         i++; // Increment the position
+            //         if (i < text.length) { // If there are more chars, schedule another
+            //             setTimeout(printEntry, 1000);
+            //         }
+            //     }
+            //     printEntry(); // Print the first entry/char
+            // }
 
             // TEST recursive function to play each note separately on player piano
             // function playEachNote(notes) {
@@ -212,7 +212,8 @@
                 loopThroughKeysArray(notesArr);
                 // playEachNote(notesArr);
             });
-
+            
+            // TEST CALL TO RECURSIVE FUNCTION
             // loopThroughSplitText(['Hello', 'how', 'are', 'you', '?']);
             
         </script>
